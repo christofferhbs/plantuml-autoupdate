@@ -1,0 +1,40 @@
+services:
+  plantuml:
+    image: plantuml/plantuml-server:latest
+    container_name: plantuml-server
+    ports:
+      - "8081:8080"
+    environment:
+      - PLANTUML_SECURITY_ALLOWURL=true
+      - PLANTUML_SECURITY_LIMIT_SIZE=8192
+      - PLANTUML_MAX_CACHE_SIZE=256
+      - BASE_URL=/plantuml
+      - PLANTUML_CONFIG_FILE=/config/config.txt
+    volumes:
+      - ./config.txt:/config/config.txt:ro
+    restart: always
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    networks:
+      - plantuml-network
+
+  watchtower:
+    image: nickfedor/watchtower:latest
+    container_name: plantuml-watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_POLL_INTERVAL=86400
+      - WATCHTOWER_SCHEDULE=0 2 * * *
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    networks:
+      - plantuml-network
+
+networks:
+  plantuml-network:
+    driver: bridge
