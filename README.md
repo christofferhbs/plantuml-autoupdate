@@ -9,7 +9,7 @@ Run a local PlantUML server with automatic daily updates.
 - **Automatic daily updates** via Watchtower (scheduled for 02:00 UTC)
 - **Automatic restart** enabled - containers restart on crashes and system reboots (`restart: always`)
 - **Cleanup old images** after updates (`WATCHTOWER_CLEANUP=true`)
-- **Monitor stopped containers** and restart them if needed
+- **Monitor stopped containers** for updates (`WATCHTOWER_INCLUDE_STOPPED=true`)
 - **24-hour polling interval** for image updates (`WATCHTOWER_POLL_INTERVAL=86400`)
 
 ## Quick start
