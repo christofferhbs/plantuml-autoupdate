@@ -35,7 +35,7 @@ Edit `docker-compose.yml` to customize:
 - **Timezone**: Modify `TZ=Europe/Copenhagen` to change the timezone for the update schedule (default: Europe/Copenhagen)
 - **Other settings**: Adjust cache size, security limits, etc. under `environment`
 
-After editing, restart: `docker-compose down && docker-compose up -d`
+After editing, restart: `docker compose up -d`
 
 ## Management commands
 
@@ -55,9 +55,8 @@ docker-compose logs -f
 # Restart server
 docker-compose restart
 
-# Rebuild (if you modify docker-compose.yml)
-docker-compose down
-docker-compose up -d
+# Apply configuration changes (recreates affected containers)
+docker compose up -d
 ```
 
 ## Troubleshooting
@@ -76,4 +75,4 @@ ports:
   - "9000:8080"  # Changed from 8081 to 9000
 ```
 
-Then restart: `docker-compose down && docker-compose up -d`
+Then apply: `docker compose up -d`
