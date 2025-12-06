@@ -31,7 +31,7 @@ Edit `docker-compose.yml` to customize:
 
 - **Port**: Change `8081:8080` under `ports` to use a different host port
 - **Base path**: Modify `BASE_URL=/plantuml` under `environment`
-- **Update schedule**: Modify `WATCHTOWER_SCHEDULE=0 2 * * *` (default: 02:00 UTC daily)
+- **Update schedule**: Modify `WATCHTOWER_SCHEDULE=0 0 2 * * *` (default: 02:00 UTC daily, using 6-field cron: second minute hour day month weekday)
 - **Other settings**: Adjust cache size, security limits, etc. under `environment`
 
 After editing, restart: `docker-compose down && docker-compose up -d`
