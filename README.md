@@ -10,7 +10,6 @@ Run a local PlantUML server with automatic daily updates.
 - **Automatic restart** enabled - containers restart on crashes and system reboots (`restart: always`)
 - **Cleanup old images** after updates (`WATCHTOWER_CLEANUP=true`)
 - **Monitor stopped containers** for updates (`WATCHTOWER_INCLUDE_STOPPED=true`)
-- **24-hour polling interval** for image updates (`WATCHTOWER_POLL_INTERVAL=86400`)
 
 ## Quick start
 
@@ -33,7 +32,6 @@ Edit `docker-compose.yml` to customize:
 - **Port**: Change `8081:8080` under `ports` to use a different host port
 - **Base path**: Modify `BASE_URL=/plantuml` under `environment`
 - **Update schedule**: Modify `WATCHTOWER_SCHEDULE=0 2 * * *` (default: 02:00 UTC daily)
-- **Polling interval**: Adjust `WATCHTOWER_POLL_INTERVAL=86400` (seconds between checks)
 - **Other settings**: Adjust cache size, security limits, etc. under `environment`
 
 After editing, restart: `docker-compose down && docker-compose up -d`
