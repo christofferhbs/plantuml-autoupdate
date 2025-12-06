@@ -6,7 +6,7 @@ Run a local PlantUML server with automatic daily updates.
 
 ## Features
 
-- **Automatic daily updates** via Watchtower (scheduled for 02:00 UTC)
+- **Automatic daily updates** via Watchtower (scheduled for 02:00 Copenhagen time)
 - **Automatic restart** enabled - containers restart on crashes and system reboots (`restart: always`)
 - **Cleanup old images** after updates (`WATCHTOWER_CLEANUP=true`)
 - **Monitor stopped containers** for updates (`WATCHTOWER_INCLUDE_STOPPED=true`)
@@ -19,7 +19,7 @@ docker-compose up -d        # or: docker compose up -d
 
 The server will be available at: <http://localhost:8081/plantuml>
 
-Watchtower monitors the PlantUML server image daily and automatically deploys updates at 02:00 UTC. After updates, old images are cleaned up automatically, and containers are configured to restart on crashes and system reboots.
+Watchtower monitors the PlantUML server image daily and automatically deploys updates at 02:00 Copenhagen time. After updates, old images are cleaned up automatically, and containers are configured to restart on crashes and system reboots.
 
 ## Configuration file
 
@@ -31,7 +31,8 @@ Edit `docker-compose.yml` to customize:
 
 - **Port**: Change `8081:8080` under `ports` to use a different host port
 - **Base path**: Modify `BASE_URL=/plantuml` under `environment`
-- **Update schedule**: Modify `WATCHTOWER_SCHEDULE=0 0 2 * * *` (default: 02:00 UTC daily, using 6-field cron: second minute hour day month weekday)
+- **Update schedule**: Modify `WATCHTOWER_SCHEDULE=0 0 2 * * *` (default: 02:00 local time daily, using 6-field cron: second minute hour day month weekday)
+- **Timezone**: Modify `TZ=Europe/Copenhagen` to change the timezone for the update schedule (default: Europe/Copenhagen)
 - **Other settings**: Adjust cache size, security limits, etc. under `environment`
 
 After editing, restart: `docker-compose down && docker-compose up -d`
